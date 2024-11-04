@@ -34,6 +34,19 @@ func (sl *ShortLink) SetLongLing(longLink *url.URL) *ShortLink {
 	return sl
 }
 
+func (sl *ShortLink) Equal(another *ShortLink) bool {
+	if sl.id != another.id {
+		return false
+	}
+	if sl.shortCode != another.shortCode {
+		return false
+	}
+	if sl.longLink.String() != another.longLink.String() {
+		return false
+	}
+	return true
+}
+
 func NewShortLink(longLink *url.URL) *ShortLink {
 	var shortLink ShortLink
 	shortCode := make([]rune, 4)

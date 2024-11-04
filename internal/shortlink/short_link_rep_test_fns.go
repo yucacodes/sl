@@ -1,32 +1,17 @@
-package shortlink_test
+package shortlink
 
 import (
 	"net/url"
 	"testing"
-
-	"github.com/yucacodes/sl/internal/shortlink"
 )
 
-func deepEquals(a *shortlink.ShortLink, b *shortlink.ShortLink) bool {
-	if a.ID() != b.ID() {
-		return false
-	}
-	if a.ShortCode() != b.ShortCode() {
-		return false
-	}
-	if a.LongLink().String() != b.LongLink().String() {
-		return false
-	}
-	return true
-}
-
-func RunShortLinkRepTest(t *testing.T, rep shortlink.ShortLinkRep) {
+func RunShortLinkRepTest(t *testing.T, rep ShortLinkRep) {
 
 	t.Run("save new and then find should retrieve saved short links", func(t *testing.T) {
 		url_a, _ := url.Parse("http://very.long.url/a")
 		url_b, _ := url.Parse("http://very.long.url/b")
-		shortLink_a := shortlink.NewShortLink(url_a)
-		shortLink_b := shortlink.NewShortLink(url_b)
+		shortLink_a := NewShortLink(url_a)
+		shortLink_b := NewShortLink(url_b)
 
 		// Test Save New
 		err := rep.SaveNew(shortLink_a)
@@ -46,7 +31,7 @@ func RunShortLinkRepTest(t *testing.T, rep shortlink.ShortLinkRep) {
 			t.Error(err.Error())
 			return
 		}
-		if !deepEquals(shortLink_a, foundShortLink_a) {
+		if !shortLink_a.Equal(foundShortLink_a) {
 			t.Error("Found short link with FindById is not equals to saved one")
 			return
 		}
@@ -57,7 +42,7 @@ func RunShortLinkRepTest(t *testing.T, rep shortlink.ShortLinkRep) {
 			t.Error(err.Error())
 			return
 		}
-		if !deepEquals(shortLink_b, foundShortLink_b) {
+		if !shortLink_b.Equal(foundShortLink_b) {
 			t.Error("Found short link with FindByShortCode is not equals to saved one")
 			return
 		}
@@ -67,7 +52,7 @@ func RunShortLinkRepTest(t *testing.T, rep shortlink.ShortLinkRep) {
 	t.Run("save new and then update should persist changes", func(t *testing.T) {
 		url_a, _ := url.Parse("http://very.long.url/a")
 		url_b, _ := url.Parse("http://very.long.url/b")
-		shortLink_a := shortlink.NewShortLink(url_a)
+		shortLink_a := NewShortLink(url_a)
 
 		// Test Save New
 		err := rep.SaveNew(shortLink_a)
@@ -91,7 +76,7 @@ func RunShortLinkRepTest(t *testing.T, rep shortlink.ShortLinkRep) {
 			t.Error(err.Error())
 			return
 		}
-		if !deepEquals(shortLink_a, foundShortLink_a) {
+		if !shortLink_a.Equal(foundShortLink_a) {
 			t.Error("Found short link with FindById is not equals to saved one")
 			return
 		}
