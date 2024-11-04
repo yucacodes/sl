@@ -17,11 +17,24 @@ type ShortLink struct {
 	id        string
 }
 
-func (sl *ShortLink) LongLink() url.URL {
-	return sl.longLink
+func (sl *ShortLink) LongLink() *url.URL {
+	return &sl.longLink
 }
 
-func NewShortLink(longLink url.URL) *ShortLink {
+func (sl *ShortLink) ShortCode() string {
+	return sl.shortCode
+}
+
+func (sl *ShortLink) ID() string {
+	return sl.id
+}
+
+func (sl *ShortLink) SetLongLing(longLink *url.URL) *ShortLink {
+	sl.longLink = *longLink
+	return sl
+}
+
+func NewShortLink(longLink *url.URL) *ShortLink {
 	var shortLink ShortLink
 	shortCode := make([]rune, 4)
 	for i := range shortCode {
@@ -29,7 +42,7 @@ func NewShortLink(longLink url.URL) *ShortLink {
 	}
 	shortLink.shortCode = string(shortCode)
 	shortLink.id = uuid.New().String()
-	shortLink.longLink = longLink
+	shortLink.longLink = *longLink
 
 	return &shortLink
 }
