@@ -29,8 +29,8 @@ func NewShortLinkRepFiles(folderPath string) (*ShortLinkRepFiles, error) {
 }
 
 func (p *ShortLinkRepFiles) SaveNew(shortLink *ShortLink) error {
-	saveFilePathId := filepath.Join(p.folderPath, "_id_"+shortLink.id, ".json")
-	saveFilePathSc := filepath.Join(p.folderPath, "_short_code_"+shortLink.shortCode, ".json")
+	saveFilePathId := p.pathForIdJsonFiles(shortLink.id)
+	saveFilePathSc := p.pathForShortCodeJsonFiles(shortLink.shortCode)
 
 	auxShortLink := struct {
 		LongLink  string
@@ -156,12 +156,12 @@ func (p *ShortLinkRepFiles) FindByShortCode(shortCode string) (*ShortLink, error
 
 // Metodo para determinar el path de los archivos JSON guardados con el ID
 func (p *ShortLinkRepFiles) pathForIdJsonFiles(id string) string {
-	idPath := filepath.Join(p.folderPath, "_id_"+id, ".json")
+	idPath := filepath.Join(p.folderPath, "_id_"+id+".json")
 	return idPath
 }
 
 // Metodo para determinar el path de los archivos JSON guardados con el shortCode
 func (p *ShortLinkRepFiles) pathForShortCodeJsonFiles(shortCode string) string {
-	shortCodePath := filepath.Join(p.folderPath, "_short_code_"+shortCode, ".json")
+	shortCodePath := filepath.Join(p.folderPath, "_short_code_"+shortCode+".json")
 	return shortCodePath
 }
