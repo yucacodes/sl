@@ -3,8 +3,8 @@
 package shortlink
 
 type ShortLinkRep interface {
-	SaveNew(shortlink *ShortLink) error
+	SaveNew(shortLink *ShortLink) error
 	FindById(id string) (*ShortLink, error)
 	FindByShortCode(shortCode string) (*ShortLink, error)
-	SaveUpdate(shortlink *ShortLink) error
+	SaveUpdate(shortLink *ShortLink) error
 }
