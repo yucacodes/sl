@@ -3,27 +3,29 @@
 
 <head>
   <title>ls</title>
-  <link rel="stylesheet" href="/static/css/resetStyle.css">
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/common.css">
+  <link rel="stylesheet" href="/static/css/index-page.css">
+  <link rel="stylesheet" href="/static/css/new-shortlink-form.css">
+  <link rel="stylesheet" href="/static/css/button-component.css">
+  <script src="/static/js/new-shortlink-form.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="/static/js/script.js"></script>
 </head>
 
-<body>
+<body id="index-page">
 
   <header>
     <h1>Link Shortener</h1>
   </header>
 
   <main>
-    <form id="form" method="submit">
-      <input type="url" name="inputLink" id="inputLink" required>
-
-      <button id="submitButton" class="submitButton" type="submit" name="submit">
+    <form id="new-shortlink-form" method="post" action="/">
+      <input type="url" name="longLink" required>
+      <button class="btn" type="submit">
         Get Short Link!!
       </button>
 
     </form>
+
     <p>Tu link acortado es...</p>
     <label>"link acortado"</label>
   </main>
