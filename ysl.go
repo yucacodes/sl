@@ -4,8 +4,14 @@ import "github.com/gin-gonic/gin"
 
 func main() {
 	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
+
+	//Cargando el index.html
+	r.LoadHTMLGlob("templates/*")
+
+	r.Static("/static", "./static")
+
+	r.GET("/", func(c *gin.Context) {
+		c.HTML(200, "index.html", gin.H{
 			"message": "pong",
 		})
 	})
