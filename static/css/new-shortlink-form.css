@@ -1,0 +1,3 @@
+#new-shortlink-form {
+  & button[type="submit"] {}
+}
