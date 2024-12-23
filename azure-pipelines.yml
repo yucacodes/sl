@@ -14,9 +14,9 @@ steps:
   displayName: 'Run docker ps'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script yeaa'
+    ls
+    pwd
+  displayName: 'ls and pwd'
 
 - task: SSH@0
   inputs:
