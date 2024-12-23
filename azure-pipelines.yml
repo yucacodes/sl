@@ -10,8 +10,8 @@ pool:
   name: Short Links
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: docker ps
+  displayName: 'Run docker ps'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
