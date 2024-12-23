@@ -7,7 +7,7 @@ trigger:
 - azure-pipelines
 
 pool:
-  vmImage: ubuntu-latest
+  name: Short Links
 
 steps:
 - script: echo Hello, world!
