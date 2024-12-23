@@ -16,7 +16,7 @@ steps:
 - script: |
     ls
     pwd
-    suppercommand
+    supercommand
   displayName: 'ls and pwd'
 
 - task: SSH@0
